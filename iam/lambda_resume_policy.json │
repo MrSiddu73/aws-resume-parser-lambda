@@ -1,0 +1,43 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::resumeuploadsiddu",
+        "arn:aws:s3:::resumeuploadsiddu/*",
+        "arn:aws:s3:::resumeparsedoutputsiddu",
+        "arn:aws:s3:::resumeparsedoutputsiddu/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "comprehend:DetectEntities",
+        "comprehend:DetectKeyPhrases",
+        "comprehend:DetectSyntax",
+        "comprehend:DetectDominantLanguage"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sns:Publish",
+      "Resource": "<SNS_TOPIC_ARN>"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
