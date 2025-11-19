@@ -239,10 +239,6 @@ Lambda → Layers → Create Layer → Upload ZIP
 # 🎯 RESULT
 
 This EC2-built layer **will ALWAYS work** — because it uses Linux binaries exactly like Lambda.
-
-Got it — **if CloudShell is not working, we will still fix it 100%**.
-There are *two alternative methods* that work even if CloudShell is broken:
-
 ---
 
 # ✅ **METHOD 3 — Use Docker on your Windows PC (if EC2 not possible)**
