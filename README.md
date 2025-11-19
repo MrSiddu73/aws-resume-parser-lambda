@@ -148,8 +148,8 @@ python/
    ├── cryptography/
    └── dependencies...
 ```
-
-Create it from CloudShell or EC2:
+```
+# ✅ **METHOD 1 - Create it from CloudShell or EC2**:
 
 ```bash
 pip3 install python-docx pdfminer.six lxml cryptography -t python/
@@ -160,14 +160,14 @@ Then upload manually via:
 
 Lambda → Layers → Create Layer
 
-OR you can use this method also 
+# **OR you can use this method also**
 
 Got it — **if CloudShell is not working, we will still fix it 100%**.
 There are *two alternative methods* that work even if CloudShell is broken:
 
 ---
 
-# ✅ **METHOD 1 — Build the Lambda Layer on EC2 (100% works)**
+# ✅ **METHOD 2 — Build the Lambda Layer on EC2 (100% works)**
 
 (Requires ~2 minutes and a free-tier EC2 instance)
 
