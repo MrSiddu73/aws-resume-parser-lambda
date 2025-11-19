@@ -160,6 +160,86 @@ Then upload manually via:
 
 Lambda → Layers → Create Layer
 
+OR you can use this method also 
+
+Got it — **if CloudShell is not working, we will still fix it 100%**.
+There are *two alternative methods* that work even if CloudShell is broken:
+
+---
+
+# ✅ **METHOD 1 — Build the Lambda Layer on EC2 (100% works)**
+
+(Requires ~2 minutes and a free-tier EC2 instance)
+
+### **STEP A — Launch EC2**
+
+* Go to EC2 → Launch Instance
+* Name: `layer-builder`
+* AMI: **Amazon Linux 2023**
+* Instance type: **t2.micro (free tier)**
+* Key pair: any
+* Security group: allow SSH
+
+---
+
+### **STEP B — SSH into EC2**
+
+Use:
+
+```bash
+ssh -i "yourkey.pem" ec2-user@<EC2-Public-IP>
+```
+
+---
+
+### **STEP C — Create the layer folder**
+
+```bash
+mkdir layer
+cd layer
+mkdir python
+```
+
+---
+
+### **STEP D — Install Linux-compatible libraries**
+
+```bash
+sudo dnf install python3-pip -y
+python3 --version
+pip3 --version
+pip3 install python-docx pdfminer.six lxml cryptography -t python/
+```
+
+---
+
+### **STEP E — Zip it**
+
+```bash
+zip -r text_extract_layer.zip python/
+```
+
+---
+
+### **STEP F — Upload layer to Lambda**
+
+Download zip from EC2 → upload manually
+OR upload directly from EC2 to S3:
+
+```bash
+aws s3 cp text_extract_layer.zip s3://<your-bucket-name>/
+```
+
+Then:
+
+Lambda → Layers → Create Layer → Upload ZIP
+
+---
+
+# 🎯 RESULT
+
+This EC2-built layer **will ALWAYS work** — because it uses Linux binaries exactly like Lambda.
+
 ---
 
 ## **7️⃣ Add S3 Trigger**
