@@ -162,7 +162,7 @@ Lambda → Layers → Create Layer
 
 # **OR you can use this method also**
 
-Got it — **if CloudShell is not working, we will still fix it 100%**.
+**if CloudShell is not working, we will still fix it 100%**.
 There are *two alternative methods* that work even if CloudShell is broken:
 
 ---
@@ -239,6 +239,48 @@ Lambda → Layers → Create Layer → Upload ZIP
 # 🎯 RESULT
 
 This EC2-built layer **will ALWAYS work** — because it uses Linux binaries exactly like Lambda.
+
+Got it — **if CloudShell is not working, we will still fix it 100%**.
+There are *two alternative methods* that work even if CloudShell is broken:
+
+---
+
+# ✅ **METHOD 3 — Use Docker on your Windows PC (if EC2 not possible)**
+
+This simulates Lambda Linux environment locally.
+
+### **STEP A — Install Docker Desktop**
+
+### **STEP B — Run Linux container with Python 3.9**
+
+```bash
+docker run -it --name lambda-layer python:3.9 bash
+```
+
+### **STEP C — Inside Docker**
+
+```bash
+mkdir -p /layer/python
+pip install python-docx pdfminer.six lxml cryptography -t /layer/python
+cd /layer
+zip -r text_extract_layer.zip python
+```
+
+### **STEP D — Copy file from Docker to Windows**
+
+In new Windows terminal:
+
+```bash
+docker cp lambda-layer:/layer/text_extract_layer.zip .
+```
+
+Now you can upload it to AWS.
+
+---
+
+🔥 BEST OPTION if your **CloudShell is not worked**
+
+👉 **Use the EC2 method** (fastest + guaranteed success)
 
 ---
 
